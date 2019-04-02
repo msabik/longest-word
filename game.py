@@ -13,10 +13,11 @@ class Game:
             self.grid.append(random.choice(letters))
 
     def is_valid(self, word):
-        if not word:
+        c_word = word.upper()
+        if not c_word:
             return False
         letters = self.grid.copy()  # Consume letters from the grid
-        for letter in word:
+        for letter in c_word:
             if letter in letters:
                 letters.remove(letter)
             else:
@@ -24,13 +25,6 @@ class Game:
         return self.__check_dictionary(word)
 
     def __check_dictionary(self, word):
-        r = requests.get(f"https://wagon-dictionary.herokuapp.com/{word}")
-        response = r.json()
+        check = requests.get(f"https://wagon-dictionary.herokuapp.com/{word}")
+        response = check.json()
         return response['found']
-
-'''       print(f'Can you find a longest word from this list? {self.grid}')
-
-    def get_user_guess(self):
-        self.guess = input()
-        return self.guess
-'''
