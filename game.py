@@ -1,7 +1,9 @@
 import random
 import string
+import requests
+#import sys
 
-
+print("Let's play a SCRABLE mini-game")
 class Game:
     def __init__(self):
         self.grid = []
@@ -19,4 +21,16 @@ class Game:
                 letters.remove(letter)
             else:
                 return False
-        return True
+        return self.__check_dictionary(word)
+
+    def __check_dictionary(self, word):
+        r = requests.get(f"https://wagon-dictionary.herokuapp.com/{word}")
+        response = r.json()
+        return response['found']
+
+'''       print(f'Can you find a longest word from this list? {self.grid}')
+
+    def get_user_guess(self):
+        self.guess = input()
+        return self.guess
+'''
