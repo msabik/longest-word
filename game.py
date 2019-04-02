@@ -10,11 +10,6 @@ class Game:
         letters = string.ascii_uppercase
         for i in range(grid_length):
             self.grid.append(random.choice(letters))
-        print(f'Can you find a longest word from this list? {self.grid}')
-
-    def get_user_guess(self):
-        self.guess = input()
-        return self.guess
 
     def is_valid(self, word):
         if not word:
@@ -26,3 +21,10 @@ class Game:
             else:
                 return False
         return True
+
+'''       print(f'Can you find a longest word from this list? {self.grid}')
+
+    def get_user_guess(self):
+        self.guess = input()
+        return self.guess
+'''
